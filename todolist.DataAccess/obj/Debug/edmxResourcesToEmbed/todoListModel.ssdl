@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="todolistModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="isComplete" Type="bit" Nullable="false" />
+  </EntityType>
+  <Function Name="getItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+  <Function Name="getItemsComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+  <Function Name="getItemsIncomplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+  <Function Name="insertItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+    <Parameter Name="text" Type="nvarchar" Mode="In" />
+    <Parameter Name="isComplete" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="removeItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateItemCompleteness" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="isComplete" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="updateItemText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="text" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="todolistModelStoreContainer">
+    <EntitySet Name="list" EntityType="Self.list" Schema="todolist" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

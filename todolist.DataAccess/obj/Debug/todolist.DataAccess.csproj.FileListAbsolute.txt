@@ -1,0 +1,10 @@
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\todolist.DataAccess.dll.config
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\todolist.DataAccess.dll
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\todolist.DataAccess.pdb
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\EntityFramework.dll
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\EntityFramework.xml
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\obj\Debug\todolist.DataAccess.csprojResolveAssemblyReference.cache
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\obj\Debug\todolist.DataAccess.dll
+c:\users\david\documents\visual studio 2015\Projects\todolist.DataAccess\todolist.DataAccess\obj\Debug\todolist.DataAccess.pdb

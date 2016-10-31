@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="todolistModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="isComplete" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="getItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+        <Function Name="getItemsComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+        <Function Name="getItemsIncomplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist" />
+        <Function Name="insertItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+          <Parameter Name="text" Type="nvarchar" Mode="In" />
+          <Parameter Name="isComplete" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="removeItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateItemCompleteness" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="isComplete" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="updateItemText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="todolist">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="text" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="todolistModelStoreContainer">
+          <EntitySet Name="list" EntityType="Self.list" Schema="todolist" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="todolistModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isComplete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="todolistEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lists" EntityType="Self.list" />
+          <FunctionImport Name="getItems" ReturnType="Collection(todolistModel.getItems_Result)" />
+          <FunctionImport Name="getItemsComplete" ReturnType="Collection(todolistModel.getItemsComplete_Result)" />
+          <FunctionImport Name="getItemsIncomplete" ReturnType="Collection(todolistModel.getItemsIncomplete_Result)" />
+          <FunctionImport Name="insertItem">
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="isComplete" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="removeItem">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateItemCompleteness">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="isComplete" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="updateItemText">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getItems_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="isComplete" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getItemsComplete_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="isComplete" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getItemsIncomplete_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="text" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="isComplete" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="todolistModelStoreContainer" CdmEntityContainer="todolistEntities">
+          <EntitySetMapping Name="lists">
+            <EntityTypeMapping TypeName="todolistModel.list">
+              <MappingFragment StoreEntitySet="list">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getItems" FunctionName="todolistModel.Store.getItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="todolistModel.getItems_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getItemsComplete" FunctionName="todolistModel.Store.getItemsComplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="todolistModel.getItemsComplete_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getItemsIncomplete" FunctionName="todolistModel.Store.getItemsIncomplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="todolistModel.getItemsIncomplete_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertItem" FunctionName="todolistModel.Store.insertItem" />
+          <FunctionImportMapping FunctionImportName="removeItem" FunctionName="todolistModel.Store.removeItem" />
+          <FunctionImportMapping FunctionImportName="updateItemCompleteness" FunctionName="todolistModel.Store.updateItemCompleteness" />
+          <FunctionImportMapping FunctionImportName="updateItemText" FunctionName="todolistModel.Store.updateItemText" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

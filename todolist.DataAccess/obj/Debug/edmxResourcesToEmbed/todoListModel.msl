@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="todolistModelStoreContainer" CdmEntityContainer="todolistEntities">
+    <EntitySetMapping Name="lists">
+      <EntityTypeMapping TypeName="todolistModel.list">
+        <MappingFragment StoreEntitySet="list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getItems" FunctionName="todolistModel.Store.getItems">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="todolistModel.getItems_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getItemsComplete" FunctionName="todolistModel.Store.getItemsComplete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="todolistModel.getItemsComplete_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getItemsIncomplete" FunctionName="todolistModel.Store.getItemsIncomplete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="todolistModel.getItemsIncomplete_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertItem" FunctionName="todolistModel.Store.insertItem" />
+    <FunctionImportMapping FunctionImportName="removeItem" FunctionName="todolistModel.Store.removeItem" />
+    <FunctionImportMapping FunctionImportName="updateItemCompleteness" FunctionName="todolistModel.Store.updateItemCompleteness" />
+    <FunctionImportMapping FunctionImportName="updateItemText" FunctionName="todolistModel.Store.updateItemText" />
+  </EntityContainerMapping>
+</Mapping>
